@@ -1,0 +1,572 @@
+
+<!DOCTYPE html>
+<html lang="lo">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio | Kedsadaphone</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Lao:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Noto Sans Lao', sans-serif;
+            background: #f6f9f6;
+            color: #1d3027;
+        }
+
+        :root {
+            --green: #176b45;
+            --dark: #123d2b;
+            --light: #e8f3eb;
+            --white: #ffffff;
+        }
+
+        /* NAVBAR */
+        nav {
+            width: 100%;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255,255,255,0.9);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.04);
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--green);
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #40564a;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--green);
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 70px 12%;
+            gap: 50px;
+            background:
+                radial-gradient(circle at 85% 20%, #d9ecdf 0, transparent 35%),
+                #f6f9f6;
+        }
+
+        .hero-text {
+            max-width: 600px;
+            animation: slideLeft 1s ease;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 8px 18px;
+            background: var(--light);
+            color: var(--green);
+            border-radius: 30px;
+            font-size: 13px;
+            margin-bottom: 25px;
+        }
+
+        .hero h1 {
+            font-size: clamp(32px, 5vw, 52px);
+            line-height: 1.5;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+
+        .hero h1 span {
+            color: var(--green);
+        }
+
+        .hero p {
+            color: #63736a;
+            line-height: 2;
+            font-size: 15px;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 13px 27px;
+            background: var(--green);
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: var(--dark);
+            transform: translateY(-3px);
+        }
+
+        /* PROFILE PHOTO */
+        .profile-area {
+            position: relative;
+            animation: slideRight 1s ease;
+        }
+
+        .profile-frame {
+            width: 300px;
+            height: 370px;
+            border-radius: 150px 150px 25px 25px;
+            padding: 10px;
+            background: linear-gradient(145deg, #176b45, #b6d9c1);
+            box-shadow: 0 20px 50px rgba(23,107,69,0.2);
+        }
+
+        .profile-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 145px 145px 20px 20px;
+            background: #dcebe0;
+        }
+
+        .photo-label {
+            position: absolute;
+            bottom: 25px;
+            left: -35px;
+            background: white;
+            padding: 13px 20px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            font-size: 13px;
+            color: var(--green);
+        }
+
+        /* GENERAL SECTION */
+        section {
+            padding: 85px 12%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .section-title small {
+            color: var(--green);
+            font-weight: 600;
+        }
+
+        .section-title h2 {
+            font-size: 30px;
+            margin-top: 8px;
+            color: var(--dark);
+        }
+
+        /* ABOUT */
+        .about {
+            background: white;
+        }
+
+        .about-card {
+            max-width: 850px;
+            margin: auto;
+            padding: 35px;
+            background: #f7faf7;
+            border: 1px solid #e6eee8;
+            border-radius: 18px;
+            line-height: 2.2;
+            color: #53665a;
+        }
+
+        .about-card strong {
+            color: var(--green);
+        }
+
+        /* INFORMATION */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .info-card {
+            background: white;
+            padding: 23px;
+            border-radius: 14px;
+            border: 1px solid #e7eee9;
+            transition: 0.3s;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(23,107,69,0.08);
+        }
+
+        .info-card small {
+            color: #819187;
+        }
+
+        .info-card h3 {
+            color: var(--green);
+            font-size: 16px;
+            margin-top: 8px;
+            overflow-wrap: anywhere;
+        }
+
+        /* EDUCATION */
+        .education {
+            background: white;
+        }
+
+        .edu-card {
+            max-width: 750px;
+            margin: auto;
+            background: #f6faf7;
+            border-left: 5px solid var(--green);
+            padding: 28px;
+            border-radius: 12px;
+            line-height: 2.1;
+        }
+
+        .edu-card h3 {
+            color: var(--green);
+            margin-bottom: 10px;
+        }
+
+        /* INTERESTS */
+        .interest-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            max-width: 650px;
+            margin: auto;
+        }
+
+        .interest-card {
+            background: white;
+            padding: 35px;
+            text-align: center;
+            border-radius: 16px;
+            border: 1px solid #e7eee9;
+            transition: 0.3s;
+        }
+
+        .interest-card:hover {
+            transform: translateY(-6px);
+            background: var(--light);
+        }
+
+        .interest-card .symbol {
+            font-size: 35px;
+            margin-bottom: 12px;
+        }
+
+        .interest-card h3 {
+            color: var(--green);
+        }
+
+        /* CONTACT */
+        .contact {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-size: 30px;
+            margin-bottom: 15px;
+        }
+
+        .contact p {
+            color: #c6d9cd;
+            line-height: 2;
+            margin: 10px 0;
+        }
+
+        .contact a {
+            color: #b5e5c5;
+            text-decoration: none;
+        }
+
+        .contact a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #0c2d1f;
+            color: #b5c9bb;
+            font-size: 12px;
+        }
+
+        /* ANIMATION */
+        @keyframes slideLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-35px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideRight {
+            from {
+                opacity: 0;
+                transform: translateX(35px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* MOBILE */
+        @media (max-width: 768px) {
+            nav {
+                padding: 16px 5%;
+            }
+
+            nav ul {
+                gap: 12px;
+            }
+
+            nav a {
+                font-size: 11px;
+            }
+
+            .logo {
+                font-size: 17px;
+            }
+
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+                padding: 55px 7%;
+            }
+
+            .profile-frame {
+                width: 230px;
+                height: 290px;
+            }
+
+            .photo-label {
+                left: -15px;
+            }
+
+            section {
+                padding: 65px 7%;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 400px) {
+            nav ul {
+                gap: 8px;
+            }
+
+            nav a {
+                font-size: 10px;
+            }
+
+            .interest-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="logo">MY PORTFOLIO.</div>
+        <ul>
+            <li><a href="#home">ໜ້າຫຼັກ</a></li>
+            <li><a href="#about">ກ່ຽວກັບ</a></li>
+            <li><a href="#education">ການສຶກສາ</a></li>
+            <li><a href="#contact">ຕິດຕໍ່</a></li>
+        </ul>
+    </nav>
+
+    <!-- HOME -->
+    <header class="hero" id="home">
+
+        <div class="hero-text">
+            <span class="tag">WELCOME TO MY PORTFOLIO</span>
+
+            <h1>
+                ສະບາຍດີ!<br>
+                ຂ້ອຍຊື່ <span>ເກດສະດາພອນ</span>
+            </h1>
+
+            <p>
+                ຂ້ອຍເປັນນັກສຶກສາປີ 1
+                ສາຂາອອກແບບ ແລະ ພັດທະນາເວັບໄຊ້.
+                ກຳລັງຮຽນຮູ້ ແລະ ພັດທະນາທັກສະ
+                ເພື່ອກ້າວໄປສູ່ອາຊີບ Web Developer.
+            </p>
+
+            <a href="#about" class="btn">ຮູ້ຈັກຂ້ອຍຫຼາຍຂຶ້ນ →</a>
+        </div>
+
+        <div class="profile-area">
+            <div class="profile-frame">
+                <img src="profile.jpg" alt="Profile Photo">
+            </div>
+            <div class="photo-label">✦ Student Portfolio</div>
+        </div>
+
+    </header>
+
+    <!-- ABOUT -->
+    <section class="about" id="about">
+
+        <div class="section-title">
+            <small>ABOUT ME</small>
+            <h2>ກ່ຽວກັບຂ້ອຍ</h2>
+        </div>
+
+        <div class="about-card">
+            ຂ້ອຍຊື່ <strong>ເກດສະດາພອນ ໄຊຍະພອນ</strong>
+            ເປັນນັກສຶກສາທີ່ສົນໃຈດ້ານເຕັກໂນໂລຊີ
+            ແລະ ການພັດທະນາເວັບໄຊ້.
+            ຂ້ອຍມັກຮຽນຮູ້ສິ່ງໃໝ່ໆ
+            ແລະ ຕ້ອງການພັດທະນາຄວາມສາມາດຂອງຕົນເອງ
+            ໃຫ້ດີຂຶ້ນໃນອະນາຄົດ.
+        </div>
+
+    </section>
+
+    <!-- PERSONAL INFORMATION -->
+    <section id="information">
+
+        <div class="section-title">
+            <small>PERSONAL INFORMATION</small>
+            <h2>ຂໍ້ມູນສ່ວນຕົວ</h2>
+        </div>
+
+        <div class="info-grid">
+
+            <div class="info-card">
+                <small>ຊື່ ແລະ ນາມສະກຸນ</small>
+                <h3>ເກດສະດາພອນ ໄຊຍະພອນ</h3>
+            </div>
+
+            <div class="info-card">
+                <small>ວັນເດືອນປີເກີດ</small>
+                <h3>24/07/2004</h3>
+            </div>
+
+            <div class="info-card">
+                <small>ທີ່ຢູ່</small>
+                <h3>ບ້ານວຽງວິໄລ, ເມືອງທ່າແຂກ, ແຂວງຄຳມ່ວນ</h3>
+            </div>
+
+            <div class="info-card">
+                <small>ສາຂາວິຊາ</small>
+                <h3>ອອກແບບ ແລະ ພັດທະນາເວັບໄຊ້</h3>
+            </div>
+
+            <div class="info-card">
+                <small>ລະດັບການສຶກສາ</small>
+                <h3>ນັກສຶກສາປີ 1</h3>
+            </div>
+
+            <div class="info-card">
+                <small>ທັກສະພິເສດ</small>
+                <h3>ກຳລັງຮຽນຮູ້ ແລະ ພັດທະນາ</h3>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section class="education" id="education">
+
+        <div class="section-title">
+            <small>EDUCATION</small>
+            <h2>ປະຫວັດການສຶກສາ</h2>
+        </div>
+
+        <div class="edu-card">
+            <h3>ວິທະຍາໄລເຕັກນິກ-ວິຊາຊີບແຂວງຄຳມ່ວນ (KTVC)</h3>
+            <p>ສາຂາ: ອອກແບບ ແລະ ພັດທະນາເວັບໄຊ້</p>
+            <p>ລະດັບ: ນັກສຶກສາປີ 1</p>
+        </div>
+
+    </section>
+
+    <!-- INTERESTS -->
+    <section id="interests">
+
+        <div class="section-title">
+            <small>MY INTERESTS</small>
+            <h2>ສິ່ງທີ່ມັກ</h2>
+        </div>
+
+        <div class="interest-grid">
+
+            <div class="interest-card">
+                <div class="symbol">🎵</div>
+                <h3>Music</h3>
+                <p>ດົນຕີ ແລະ ເກມ</p>
+        </div>
+
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
+
+        <h2>ຕິດຕໍ່ຂ້ອຍ</h2>
+
+        <p>Phone: 02091212242</p>
+
+        <p>
+            Facebook:
+            <a href="https://www.facebook.com/share/19vughPXF2/?mibextid=wwXIfr"
+               target="_blank">
+                Visit My Facebook
+            </a>
+        </p>
+
+        <p>Email: secondminute509@gmail.com</p>
+
+    </section>
+
+    <footer>
+        © 2026 Kedsadaphone Xaiyaphone | My Personal Portfolio
+    </footer>
+
+</body>
+</html>
